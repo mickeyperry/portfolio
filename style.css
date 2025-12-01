@@ -1342,6 +1342,27 @@ footer {
         display: none;
     }
 
+    .nav-container {
+        padding: 0.8rem 1rem;
+    }
+
+    .logo h1 {
+        font-size: 1rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .tagline {
+        font-size: 0.6rem;
+    }
+
+    .logo img {
+        height: 28px !important;
+    }
+
+    .logo > div {
+        gap: 8px !important;
+    }
+
     .about-content {
         grid-template-columns: 1fr;
     }
@@ -1353,6 +1374,15 @@ footer {
     .hero {
         padding: 6rem 1rem 3rem;
         margin-top: 0;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+        margin-top: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
     }
 
     .modal-content {
