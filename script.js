@@ -477,6 +477,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 16);
     }
 
+    // Radio Player Toggle for Mobile
+    const radioToggle = document.getElementById('radioToggle');
+    const miniPlayer = document.getElementById('miniPlayer');
+
+    if (radioToggle && miniPlayer) {
+        radioToggle.addEventListener('click', () => {
+            miniPlayer.classList.toggle('open');
+            // Hide toggle when player is open
+            if (miniPlayer.classList.contains('open')) {
+                radioToggle.style.opacity = '0';
+                radioToggle.style.pointerEvents = 'none';
+            } else {
+                radioToggle.style.opacity = '1';
+                radioToggle.style.pointerEvents = 'auto';
+            }
+        });
+
+        // Click outside to close
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 &&
+                !miniPlayer.contains(e.target) &&
+                !radioToggle.contains(e.target) &&
+                miniPlayer.classList.contains('open')) {
+                miniPlayer.classList.remove('open');
+                radioToggle.style.opacity = '1';
+                radioToggle.style.pointerEvents = 'auto';
+            }
+        });
+    }
+
     // Mini Music Player with SoundCloud Widget API
     const miniPlayBtn = document.getElementById('miniPlay');
     const miniPrevBtn = document.getElementById('miniPrev');

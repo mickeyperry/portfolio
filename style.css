@@ -354,9 +354,19 @@ body {
     font-size: 0.8rem;
 }
 
+/* Radio toggle - hidden on desktop */
+.radio-toggle {
+    display: none;
+}
+
+/* Radio player - always visible but collapsible on mobile */
 @media (max-width: 1200px) {
     .mini-player {
-        display: none;
+        display: flex; /* Keep it visible */
+    }
+
+    .radio-toggle {
+        display: flex; /* Show toggle on mobile */
     }
 }
 
@@ -1374,43 +1384,85 @@ footer {
         min-height: 280px;
     }
 
-    /* Radio player - show on mobile at bottom */
+    /* Radio player - collapsible side panel on mobile */
     .mini-player {
-        display: flex !important;
         position: fixed;
-        bottom: 10px;
-        right: 10px;
-        left: 10px;
-        width: auto;
-        z-index: 998;
-        max-width: calc(100vw - 20px);
-        padding: 0.5rem 0.8rem;
+        right: -320px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 280px;
+        z-index: 999;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        flex-direction: column;
+        padding: 1rem;
+        border-radius: 16px 0 0 16px;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .mini-player.open {
+        right: 0;
+    }
+
+    /* Radio toggle tab */
+    .radio-toggle {
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 120px;
+        background: linear-gradient(135deg, rgba(255, 0, 110, 0.9), rgba(168, 85, 247, 0.9));
+        backdrop-filter: blur(10px);
+        border-radius: 16px 0 0 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.3rem;
+        cursor: pointer;
+        z-index: 1000;
+        transition: all 0.3s ease;
+        box-shadow: -3px 0 15px rgba(255, 0, 110, 0.4);
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: white;
+        letter-spacing: 2px;
+        padding: 1rem 0.5rem;
+    }
+
+    .radio-toggle:hover {
+        width: 55px;
+        box-shadow: -5px 0 25px rgba(255, 0, 110, 0.6);
+    }
+
+    .radio-toggle .icon {
+        font-size: 1.2rem;
+        writing-mode: horizontal-tb;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.6; }
     }
 
     .player-radio-name {
-        font-size: 0.6rem !important;
-        padding: 0.1rem !important;
+        font-size: 0.7rem;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5rem;
     }
 
     .player-display {
-        min-width: 120px !important;
-        max-width: 150px !important;
-        padding: 0.3rem 0.5rem !important;
+        width: 100%;
+        margin-bottom: 0.5rem;
     }
 
-    .marquee-text {
-        font-size: 0.65rem !important;
-    }
-
-    .retro-btn {
-        width: 25px !important;
-        height: 25px !important;
-        font-size: 0.6rem !important;
-    }
-
-    .retro-play {
-        width: 28px !important;
-        height: 28px !important;
+    .player-buttons {
+        width: 100%;
+        justify-content: center;
     }
 }
 
