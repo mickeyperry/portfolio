@@ -878,8 +878,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load custom videos from localStorage OR videos.json file
     let customVideos = JSON.parse(localStorage.getItem('customVideos')) || [];
 
-    // GitHub Gist URL for automatic sync (will be set up)
-    const GIST_URL = 'GIST_URL_HERE'; // Replace with your gist raw URL
+    // GitHub Gist URL for automatic sync
+    const GIST_URL = 'https://gist.githubusercontent.com/mickeyperry/4a55db213bfab3ce2b210f0e16341524/raw/videos.json';
 
     // Try to load videos from GitHub Gist OR videos.json file
     async function loadVideosFromFile() {
