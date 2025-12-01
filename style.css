@@ -1651,6 +1651,11 @@ body.shaking {
     box-shadow: 0 10px 30px rgba(255, 0, 110, 0.5);
 }
 
+.export-btn {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    margin-top: 0.5rem;
+}
+
 .admin-list h3 {
     margin-bottom: 1rem;
     color: var(--text-primary);

@@ -730,6 +730,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminPanel = document.getElementById('adminPanel');
     const closeAdmin = document.getElementById('closeAdmin');
     const addVideoBtn = document.getElementById('addVideo');
+    const exportVideosBtn = document.getElementById('exportVideos');
     const videoIdInput = document.getElementById('videoId');
     const videoCategoryInput = document.getElementById('videoCategory');
     const videoListContainer = document.getElementById('videoList');
@@ -741,8 +742,31 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Load custom videos from localStorage
+    // Load custom videos from localStorage OR videos.json file
     let customVideos = JSON.parse(localStorage.getItem('customVideos')) || [];
+
+    // Try to load videos from videos.json file
+    async function loadVideosFromFile() {
+        try {
+            const response = await fetch('videos.json');
+            if (response.ok) {
+                const fileVideos = await response.json();
+                // Merge with localStorage, prioritizing file videos
+                if (fileVideos && fileVideos.length > 0) {
+                    customVideos = fileVideos;
+                    localStorage.setItem('customVideos', JSON.stringify(customVideos));
+                    console.log('Loaded videos from videos.json');
+                }
+            }
+        } catch (error) {
+            console.log('No videos.json file found, using localStorage only');
+        }
+    }
+
+    // Load videos on startup
+    loadVideosFromFile().then(() => {
+        renderCustomVideos();
+    });
 
     // Admin password (you can change this)
     const ADMIN_PASSWORD = 'mickey2025';
@@ -818,7 +842,32 @@ document.addEventListener('DOMContentLoaded', () => {
         renderVideoList();
         renderCustomVideos();
 
-        showNotification('✅ Video added successfully!');
+        showNotification('✅ Video added successfully! Remember to export to make it live.');
+        playPopSound();
+    });
+
+    // Export videos to JSON file
+    exportVideosBtn.addEventListener('click', () => {
+        if (customVideos.length === 0) {
+            showNotification('⚠️ No videos to export');
+            return;
+        }
+
+        // Create JSON blob
+        const jsonData = JSON.stringify(customVideos, null, 2);
+        const blob = new Blob([jsonData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+
+        // Create download link
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'videos.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        showNotification('📥 Videos exported! Now upload videos.json to GitHub');
         playPopSound();
     });
 
@@ -920,7 +969,4 @@ document.addEventListener('DOMContentLoaded', () => {
         // Observe for fade-in animation
         revealObserver.observe(card);
     }
-
-    // Load custom videos on page load
-    renderCustomVideos();
 });
