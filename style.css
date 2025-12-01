@@ -363,14 +363,14 @@ body {
 
 /* Hero Section */
 .hero {
-    min-height: 90vh;
+    min-height: 85vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding: 3rem 2rem 3rem;
-    transform: translateY(-5vh);
+    padding: 8rem 2rem 6rem;
+    margin-top: -2rem;
 }
 
 .hero-gradient {
@@ -605,6 +605,8 @@ body {
         0 0 40px rgba(255, 0, 110, 0.4);
     cursor: pointer;
     animation: buttonPulse 3s ease-in-out infinite;
+    z-index: 10;
+    margin-top: 2rem;
 }
 
 @keyframes buttonPulse {
@@ -707,10 +709,11 @@ body {
 
 /* About Section */
 .about {
-    padding: 6rem 0;
+    padding: 8rem 0;
     background: var(--secondary-bg);
     position: relative;
     overflow: hidden;
+    margin-top: 4rem;
 }
 
 /* Scanline pattern for About section */
@@ -1337,6 +1340,7 @@ footer {
 
     .hero {
         padding: 6rem 1rem 3rem;
+        margin-top: 0;
     }
 
     .modal-content {
@@ -1347,6 +1351,19 @@ footer {
     .close-modal {
         top: -50px;
         font-size: 35px;
+    }
+
+    /* Ensure video thumbnails display on mobile */
+    .project-image img {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        min-height: 180px;
+        background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    }
+
+    .project-card {
+        min-height: 280px;
     }
 }
 
