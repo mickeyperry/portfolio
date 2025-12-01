@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mickey Perry | Motion Designer & Animator</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated background grid -->
+    <div class="bg-grid"></div>
+
+    <!-- Floating film strips -->
+    <div class="film-strip"></div>
+    <div class="film-strip"></div>
+    <div class="film-strip"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.png" alt="MP" style="height: 40px; width: auto;">
+                    <div>
+                        <h1 id="name-explosion" class="clickable-name" title="Click me! 🎬">MICKEY PERRY</h1>
+                        <p class="tagline">Artist • Motion Designer • Animator</p>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#reel">Reel</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://www.youtube.com" target="_blank" aria-label="YouTube">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Showreel -->
+    <section id="reel" class="hero">
+        <div class="hero-content">
+            <h2 class="hero-title">Creative Visuals & Animation</h2>
+            <p class="hero-subtitle">Bringing ideas to life through design and motion</p>
+            <!-- Showreel -->
+            <div class="video-container" id="hero-reel" data-video-id="69qAFvMInkA" style="cursor: pointer;">
+                <img src="https://img.youtube.com/vi/69qAFvMInkA/maxresdefault.jpg" alt="Showreel 2022" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                <div class="play-overlay-large">▶</div>
+            </div>
+            <a href="#projects" class="cta-button">View My Work</a>
+        </div>
+        <div class="hero-gradient"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">Hey! I'm Mickey,</h2>
+                    <p>I've been into art and music since I was a kid, and it was only natural that I became a graphic designer and animator.</p>
+                    <p>I studied at <strong>Ariel University</strong> and the <strong>Israeli Animation College</strong>, and now I'm all about creating fun, challenging, and interesting projects.</p>
+                    <p>If you're looking for someone to help you create amazing visuals and audio, then I'm your guy!</p>
+                    <a href="#" class="cv-link">Download Full CV →</a>
+                </div>
+                <div class="about-image">
+                    <div class="avatar-placeholder">
+                        <p>Your Avatar/Photo Here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section id="projects" class="projects">
+        <!-- Parallax floating shapes -->
+        <div class="parallax-shapes" id="parallax-layer">
+            <div class="parallax-shape triangle" style="top: 10%; left: 5%;"></div>
+            <div class="parallax-shape circle" style="top: 20%; right: 10%;"></div>
+            <div class="parallax-shape square" style="top: 50%; left: 8%;"></div>
+            <div class="parallax-shape triangle" style="top: 70%; right: 15%;"></div>
+            <div class="parallax-shape circle" style="top: 85%; left: 12%;"></div>
+            <div class="parallax-shape square" style="top: 30%; right: 5%;"></div>
+        </div>
+
+        <!-- Easter eggs (hidden by default, appear on interaction) -->
+        <div class="easter-egg" id="sonic-egg" style="top: 15%; left: 50%;">💎</div>
+        <div class="easter-egg" id="sega-egg" style="top: 45%; right: 20%;">🎮</div>
+        <div class="easter-egg" id="music-egg" style="top: 75%; left: 30%;">🎵</div>
+
+        <div class="container">
+            <h2 class="section-title">Selected Work</h2>
+            <div class="projects-grid">
+                <!-- Playtika --><div class="project-card" data-video-id="OPdCfxFN0ic">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/OPdCfxFN0ic/mqdefault.jpg" alt="Playtika" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Playtika</h3>
+                </div>
+                <div class="project-card" data-video-id="nQ6FpBW1TWc">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/nQ6FpBW1TWc/mqdefault.jpg" alt="Playtika" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Playtika</h3>
+                </div>
+                <div class="project-card" data-video-id="w7qyqD-NA48">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/w7qyqD-NA48/mqdefault.jpg" alt="Playtika" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Playtika</h3>
+                </div>
+                <div class="project-card" data-video-id="Gq_BuGb63Q0">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/Gq_BuGb63Q0/mqdefault.jpg" alt="Playtika" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Playtika</h3>
+                </div>
+                <div class="project-card" data-video-id="5gW6Rsfz3xE">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/5gW6Rsfz3xE/mqdefault.jpg" alt="Playtika" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Playtika</h3>
+                </div>
+                <div class="project-card" data-video-id="Lo7UIk1xttA">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/Lo7UIk1xttA/mqdefault.jpg" alt="Playtika" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Playtika</h3>
+                </div>
+                <div class="project-card" data-video-id="lsvwQXKEp4I">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/lsvwQXKEp4I/mqdefault.jpg" alt="Playtika" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Playtika</h3>
+                </div>
+                <div class="project-card" data-video-id="v3NGJPTgYQA">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/v3NGJPTgYQA/mqdefault.jpg" alt="Playtika" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Playtika</h3>
+                </div>
+
+                <!-- Personal Projects -->
+                <div class="project-card" data-video-id="_PmhImN8qyQ">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/_PmhImN8qyQ/mqdefault.jpg" alt="Personal Project" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Personal Project</h3>
+                </div>
+                <div class="project-card" data-video-id="I5fejugB4B8">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/I5fejugB4B8/mqdefault.jpg" alt="Personal Project" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Personal Project</h3>
+                </div>
+                <div class="project-card" data-video-id="vCWyW2c1LzY">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/vCWyW2c1LzY/mqdefault.jpg" alt="Personal Project" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Personal Project</h3>
+                </div>
+
+                <!-- Waves -->
+                <div class="project-card" data-video-id="fxHy8IYAYw0">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/fxHy8IYAYw0/mqdefault.jpg" alt="Waves" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Waves</h3>
+                </div>
+                <div class="project-card" data-video-id="gVKgrZiSLUU">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/gVKgrZiSLUU/mqdefault.jpg" alt="Waves" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Waves</h3>
+                </div>
+                <div class="project-card" data-video-id="P32QrE0Whck">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/P32QrE0Whck/mqdefault.jpg" alt="Waves" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Waves</h3>
+                </div>
+                <div class="project-card" data-video-id="e0ifAQ7QOxY">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/e0ifAQ7QOxY/mqdefault.jpg" alt="Waves" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Waves</h3>
+                </div>
+                <div class="project-card" data-video-id="mHwNEyiVQmY">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/mHwNEyiVQmY/mqdefault.jpg" alt="Waves" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Waves</h3>
+                </div>
+                <div class="project-card" data-video-id="TjUKa1YOVTI">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/TjUKa1YOVTI/mqdefault.jpg" alt="Waves" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Waves</h3>
+                </div>
+                <div class="project-card" data-video-id="vvngoFzMnA4">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/vvngoFzMnA4/mqdefault.jpg" alt="Waves" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Waves</h3>
+                </div>
+
+                <!-- Post Office -->
+                <div class="project-card" data-video-id="jHmqEkBV1w4">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/jHmqEkBV1w4/mqdefault.jpg" alt="Post Office" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Post Office</h3>
+                </div>
+                <div class="project-card" data-video-id="UcVKRt8_nto">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/UcVKRt8_nto/mqdefault.jpg" alt="Post Office" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Post Office</h3>
+                </div>
+
+                <!-- Igloo -->
+                <div class="project-card" data-video-id="Fcm0_2c2dHc">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/Fcm0_2c2dHc/mqdefault.jpg" alt="Igloo" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Igloo</h3>
+                </div>
+
+                <!-- Liniad -->
+                <div class="project-card" data-video-id="yeJoH0wTuA8">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/yeJoH0wTuA8/mqdefault.jpg" alt="Liniad" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Liniad</h3>
+                </div>
+                <div class="project-card" data-video-id="bk9SGRs3qz8">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/bk9SGRs3qz8/mqdefault.jpg" alt="Liniad" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Liniad</h3>
+                </div>
+                <div class="project-card" data-video-id="FOfBOIj-uaI">
+                    <div class="project-image">
+                        <img src="https://img.youtube.com/vi/FOfBOIj-uaI/mqdefault.jpg" alt="Liniad" loading="lazy">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <h3>Liniad</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-video-container">
+                <iframe id="modal-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Create Something Amazing</h2>
+            <p class="contact-text">Available for freelance projects and full-time opportunities</p>
+            <a href="mailto:mickeypafu@gmail.com" class="email-link">mickeypafu@gmail.com</a>
+            <div class="social-links">
+                <a href="https://www.facebook.com" target="_blank">Facebook</a>
+                <a href="https://www.youtube.com" target="_blank">YouTube</a>
+                <a href="https://www.instagram.com" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Mickey Perry | All Rights Reserved</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
