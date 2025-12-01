@@ -143,15 +143,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const openVideo = (e) => {
             const videoId = card.getAttribute('data-video-id');
             if (videoId) {
+                const isMobile = window.innerWidth <= 768;
+
                 // Create ripple effect
                 createRipple(e, card);
 
-                // Open modal with video
-                setTimeout(() => {
-                    modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }, 100);
+                if (isMobile) {
+                    // Mobile: Open modal with playsinline to prevent app redirect
+                    setTimeout(() => {
+                        modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }, 100);
+                } else {
+                    // Desktop: Normal modal
+                    setTimeout(() => {
+                        modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }, 100);
+                }
             }
         };
 
@@ -1058,7 +1069,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             card.innerHTML = `
                 <div class="project-image">
-                    <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="${video.category}" loading="lazy">
+                    <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.category}" loading="eager">
                     <div class="play-overlay">▶</div>
                 </div>
                 <h3>${video.category}</h3>
@@ -1097,9 +1108,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const openVideo = (e) => {
             const videoId = card.getAttribute('data-video-id');
             if (videoId) {
+                const isMobile = window.innerWidth <= 768;
                 createRipple(e, card);
                 setTimeout(() => {
-                    modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                    if (isMobile) {
+                        modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
+                    } else {
+                        modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                    }
                     modal.classList.add('active');
                     document.body.style.overflow = 'hidden';
                 }, 100);
