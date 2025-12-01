@@ -884,9 +884,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Try to load videos from GitHub Gist OR videos.json file
     async function loadVideosFromFile() {
         try {
-            // Try Gist first (automatic sync)
+            // Try Gist first (automatic sync) with cache busting
             if (GIST_URL && GIST_URL !== 'GIST_URL_HERE') {
-                const response = await fetch(GIST_URL);
+                const cacheBuster = `?t=${Date.now()}`;
+                const response = await fetch(GIST_URL + cacheBuster);
                 if (response.ok) {
                     const fileVideos = await response.json();
                     if (fileVideos && fileVideos.length > 0) {
