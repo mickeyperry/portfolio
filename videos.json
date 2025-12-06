@@ -1,10 +1,20 @@
 [
   {
-    "id": "OPdCfxFN0ic",
-    "name": "WSOP x NFL: Hammer Time",
+    "id": "8wFK_ZNZVGg",
     "category": "Playtika",
-    "role": "Lead Motion Designer",
-    "description": "Dynamic sports-themed animation combining NFL energy with poker excitement. Created engaging motion graphics and transitions.",
-    "timestamp": 1733453400000
+    "timestamp": 1764629488048
+  },
+  {
+    "id": "zYqJlpjJjus",
+    "category": "Playtika",
+    "timestamp": 1764971970756
+  },
+  {
+    "id": "hLwItRxMHso",
+    "category": "Waves",
+    "timestamp": 1764977872593,
+    "name": "Waves SuperRack SoundGrid",
+    "role": "Motion Designer & Video Editing",
+    "description": "Video editing with custom text animations, visual effects and 3D smoke rendering. Integrated Blender3d smoke elements into background sequences and transitions"
   }
 ]

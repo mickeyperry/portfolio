@@ -1706,7 +1706,7 @@ footer {
 /* Mobile Responsive */
 @media (max-width: 968px) {
     .modal.active {
-        padding-top: 100px;
+        padding-top: 120px;
     }
 
     .modal-layout {
@@ -1723,14 +1723,14 @@ footer {
         font-size: 1.1rem;
     }
 
-    .modal.active {
-        padding-top: 110px;
+    .close-modal {
+        top: -60px;
+        right: 5px;
+        font-size: 38px;
     }
 
-    .close-modal {
-        top: -45px;
-        right: 5px;
-        font-size: 40px;
+    .modal-content {
+        margin-top: 10px;
     }
 }
 

@@ -92,22 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
 
                 if (isMobile) {
-                    // Mobile: Replace thumbnail with embedded iframe directly
-                    const iframe = document.createElement('iframe');
-                    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1`;
-                    iframe.style.position = 'absolute';
-                    iframe.style.top = '0';
-                    iframe.style.left = '0';
-                    iframe.style.width = '100%';
-                    iframe.style.height = '100%';
-                    iframe.frameBorder = '0';
-                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-                    iframe.allowFullscreen = true;
-
-                    // Clear container and add iframe
-                    heroReel.innerHTML = '';
-                    heroReel.appendChild(iframe);
-                    heroReel.style.cursor = 'default';
+                    // Mobile: Open in modal with enhanced params to prevent app redirect
+                    updateVideoInfo(videoId);
+                    modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&playsinline=1&modestbranding=1&fs=0&controls=1&enablejsapi=1&origin=${window.location.origin}`;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
                 } else {
                     // Desktop: Open modal as before
                     updateVideoInfo(videoId);
@@ -199,10 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 createRipple(e, card);
 
                 if (isMobile) {
-                    // Mobile: Open modal with playsinline to prevent app redirect
+                    // Mobile: Open modal with enhanced parameters to prevent app redirect
                     setTimeout(() => {
                         updateVideoInfo(videoId);
-                        modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
+                        // Enhanced parameters for Firefox and other mobile browsers
+                        modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&playsinline=1&modestbranding=1&fs=0&controls=1&enablejsapi=1&origin=${window.location.origin}`;
                         modal.classList.add('active');
                         document.body.style.overflow = 'hidden';
                     }, 100);
@@ -1276,7 +1266,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     updateVideoInfo(videoId);
                     if (isMobile) {
-                        modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
+                        modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&playsinline=1&modestbranding=1&fs=0&controls=1&enablejsapi=1&origin=${window.location.origin}`;
                     } else {
                         modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
                     }
