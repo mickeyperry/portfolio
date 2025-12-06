@@ -20,8 +20,8 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <img src="logo.png" alt="MP" style="height: 40px; width: auto;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="logo.png" alt="MP" style="height: 32px; width: auto;">
                     <div>
                         <h1 id="name-explosion" class="clickable-name" title="Click me! 🎬">MICKEY PERRY</h1>
                         <p class="tagline">Artist • Motion Designer • Animator</p>
@@ -353,8 +353,26 @@
     <div id="video-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <div class="modal-video-container">
-                <iframe id="modal-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="modal-layout">
+                <div class="modal-video-container">
+                    <iframe id="modal-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info-panel" id="videoInfoPanel">
+                    <div class="info-content">
+                        <h3 class="info-title" id="infoTitle">Video Title</h3>
+                        <div class="info-details">
+                            <div class="info-item">
+                                <span class="info-label">📁 Category</span>
+                                <span class="info-value" id="infoCategory">—</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">🎨 Role</span>
+                                <span class="info-value" id="infoRole">—</span>
+                            </div>
+                        </div>
+                        <div class="info-description" id="infoDescription"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -388,15 +406,40 @@
                     <label for="videoId">YouTube Video ID:</label>
                     <input type="text" id="videoId" placeholder="e.g., dQw4w9WgXcQ">
 
+                    <label for="videoName">Video Name:</label>
+                    <input type="text" id="videoName" placeholder="e.g., WSOP x NFL: Hammer Time">
+
                     <label for="videoCategory">Category:</label>
                     <input type="text" id="videoCategory" placeholder="e.g., Playtika, Personal Project">
 
-                    <button id="addVideo" class="admin-btn">Add Video</button>
-                    <button id="exportVideos" class="admin-btn export-btn">📥 Export Videos to File</button>
+                    <label for="videoRole">Your Role:</label>
+                    <input type="text" id="videoRole" placeholder="e.g., Motion Designer, Lead Animator">
+
+                    <label for="videoDescription">Description (Optional):</label>
+                    <textarea id="videoDescription" placeholder="Brief description of the project, techniques used, etc." rows="3"></textarea>
+
+                    <div class="admin-buttons">
+                        <button id="addVideo" class="admin-btn">Add Video</button>
+                        <button id="cancelEdit" class="admin-btn cancel-btn" style="display: none;">❌ Cancel</button>
+                    </div>
+                    <button id="exportVideos" class="admin-btn export-btn">📥 Export & Sync</button>
                 </div>
+
+                <div class="admin-toolbar">
+                    <h3>Manage Videos</h3>
+                    <div class="bulk-actions">
+                        <select id="bulkAction">
+                            <option value="">Bulk Actions...</option>
+                            <option value="sort-az">Sort A-Z</option>
+                            <option value="sort-category">Group by Category</option>
+                            <option value="reverse">Reverse Order</option>
+                        </select>
+                        <button id="applyBulk" class="admin-btn-small">Apply</button>
+                    </div>
+                </div>
+
                 <div class="admin-list">
-                    <h3>Added Videos</h3>
-                    <div id="videoList" class="video-list"></div>
+                    <div id="videoList" class="video-list sortable"></div>
                 </div>
             </div>
         </div>

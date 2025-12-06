@@ -57,6 +57,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalIframe = document.getElementById('modal-iframe');
     const closeModal = document.querySelector('.close-modal');
 
+    // Info panel elements
+    const infoTitle = document.getElementById('infoTitle');
+    const infoCategory = document.getElementById('infoCategory');
+    const infoRole = document.getElementById('infoRole');
+    const infoDescription = document.getElementById('infoDescription');
+
+    // Function to update video info panel
+    function updateVideoInfo(videoId) {
+        // Find video in customVideos
+        const video = customVideos.find(v => v.id === videoId);
+
+        if (video && video.name) {
+            // Show info panel with video data
+            infoTitle.textContent = video.name || 'Untitled Video';
+            infoCategory.textContent = video.category || '—';
+            infoRole.textContent = video.role || '—';
+            infoDescription.textContent = video.description || '';
+        } else {
+            // Hide or show default info for hardcoded videos
+            infoTitle.textContent = 'Featured Work';
+            infoCategory.textContent = '—';
+            infoRole.textContent = 'Motion Designer & Animator';
+            infoDescription.textContent = '';
+        }
+    }
+
     // Hero reel click handler - open in modal on desktop, inline on mobile
     const heroReel = document.getElementById('hero-reel');
     if (heroReel) {
@@ -84,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     heroReel.style.cursor = 'default';
                 } else {
                     // Desktop: Open modal as before
+                    updateVideoInfo(videoId);
                     modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
                     modal.classList.add('active');
                     document.body.style.overflow = 'hidden';
@@ -174,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isMobile) {
                     // Mobile: Open modal with playsinline to prevent app redirect
                     setTimeout(() => {
+                        updateVideoInfo(videoId);
                         modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
                         modal.classList.add('active');
                         document.body.style.overflow = 'hidden';
@@ -181,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     // Desktop: Normal modal
                     setTimeout(() => {
+                        updateVideoInfo(videoId);
                         modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
                         modal.classList.add('active');
                         document.body.style.overflow = 'hidden';
@@ -575,7 +604,8 @@ document.addEventListener('DOMContentLoaded', () => {
         iframe.scrolling = 'no';
         iframe.frameborder = 'no';
         iframe.allow = 'autoplay';
-        iframe.src = 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/pafu&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false';
+        // Your private SoundCloud playlist
+        iframe.src = 'https://w.soundcloud.com/player/?url=https%3A//on.soundcloud.com/gmdzJXQ28cU0Sunvpy&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false';
         iframe.style.display = 'none';
         document.body.appendChild(iframe);
 
@@ -863,9 +893,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminPanel = document.getElementById('adminPanel');
     const closeAdmin = document.getElementById('closeAdmin');
     const addVideoBtn = document.getElementById('addVideo');
+    const cancelEditBtn = document.getElementById('cancelEdit');
     const exportVideosBtn = document.getElementById('exportVideos');
     const videoIdInput = document.getElementById('videoId');
+    const videoNameInput = document.getElementById('videoName');
     const videoCategoryInput = document.getElementById('videoCategory');
+    const videoRoleInput = document.getElementById('videoRole');
+    const videoDescriptionInput = document.getElementById('videoDescription');
     const videoListContainer = document.getElementById('videoList');
     const projectsGrid = document.querySelector('.projects-grid');
 
@@ -877,6 +911,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load custom videos from localStorage OR videos.json file
     let customVideos = JSON.parse(localStorage.getItem('customVideos')) || [];
+
+    // Track if we're editing a video
+    let editingVideoId = null;
 
     // GitHub Gist URL for automatic sync
     const GIST_URL = 'https://gist.githubusercontent.com/mickeyperry/4a55db213bfab3ce2b210f0e16341524/raw/videos.json';
@@ -959,41 +996,73 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Add video
+    // Add or Update video
     addVideoBtn.addEventListener('click', () => {
         const videoId = videoIdInput.value.trim();
+        const name = videoNameInput.value.trim() || 'Untitled Video';
         const category = videoCategoryInput.value.trim() || 'Custom Video';
+        const role = videoRoleInput.value.trim() || 'Motion Designer';
+        const description = videoDescriptionInput.value.trim();
 
         if (!videoId) {
             showNotification('⚠️ Please enter a YouTube video ID');
             return;
         }
 
-        // Check if video already exists
-        if (customVideos.some(v => v.id === videoId)) {
-            showNotification('⚠️ This video is already added');
-            return;
+        if (editingVideoId) {
+            // UPDATE existing video
+            const videoIndex = customVideos.findIndex(v => v.id === editingVideoId);
+            if (videoIndex !== -1) {
+                customVideos[videoIndex] = {
+                    ...customVideos[videoIndex],
+                    id: videoId,
+                    name: name,
+                    category: category,
+                    role: role,
+                    description: description
+                };
+                localStorage.setItem('customVideos', JSON.stringify(customVideos));
+
+                // Clear editing state
+                editingVideoId = null;
+                addVideoBtn.textContent = 'Add Video';
+                addVideoBtn.style.background = 'linear-gradient(135deg, var(--accent-pink), var(--accent-purple))';
+                cancelEditBtn.style.display = 'none';
+
+                showNotification('✅ Video updated successfully!');
+            }
+        } else {
+            // ADD new video
+            // Check if video already exists
+            if (customVideos.some(v => v.id === videoId)) {
+                showNotification('⚠️ This video is already added');
+                return;
+            }
+
+            const newVideo = {
+                id: videoId,
+                name: name,
+                category: category,
+                role: role,
+                description: description,
+                timestamp: Date.now()
+            };
+
+            customVideos.push(newVideo);
+            localStorage.setItem('customVideos', JSON.stringify(customVideos));
+            showNotification('✅ Video added successfully! Remember to export to make it live.');
         }
-
-        // Add to custom videos
-        const newVideo = {
-            id: videoId,
-            category: category,
-            timestamp: Date.now()
-        };
-
-        customVideos.push(newVideo);
-        localStorage.setItem('customVideos', JSON.stringify(customVideos));
 
         // Clear inputs
         videoIdInput.value = '';
+        videoNameInput.value = '';
         videoCategoryInput.value = '';
+        videoRoleInput.value = '';
+        videoDescriptionInput.value = '';
 
         // Refresh displays
         renderVideoList();
         renderCustomVideos();
-
-        showNotification('✅ Video added successfully! Remember to export to make it live.');
         playPopSound();
     });
 
@@ -1057,10 +1126,64 @@ document.addEventListener('DOMContentLoaded', () => {
         playPopSound();
     });
 
+    // Edit video
+    function editVideo(videoId) {
+        const video = customVideos.find(v => v.id === videoId);
+        if (!video) return;
+
+        // Populate form with video data
+        videoIdInput.value = video.id;
+        videoNameInput.value = video.name || '';
+        videoCategoryInput.value = video.category || '';
+        videoRoleInput.value = video.role || '';
+        videoDescriptionInput.value = video.description || '';
+
+        // Set editing state
+        editingVideoId = videoId;
+        addVideoBtn.textContent = 'Update Video';
+        addVideoBtn.style.background = 'linear-gradient(135deg, var(--accent-cyan), var(--accent-purple))';
+        cancelEditBtn.style.display = 'block';
+
+        // Scroll to form
+        document.querySelector('.admin-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        showNotification('✏️ Editing mode - click Update to save changes');
+    }
+
+    // Cancel editing
+    function cancelEdit() {
+        editingVideoId = null;
+        addVideoBtn.textContent = 'Add Video';
+        addVideoBtn.style.background = 'linear-gradient(135deg, var(--accent-pink), var(--accent-purple))';
+        cancelEditBtn.style.display = 'none';
+
+        // Clear inputs
+        videoIdInput.value = '';
+        videoNameInput.value = '';
+        videoCategoryInput.value = '';
+        videoRoleInput.value = '';
+        videoDescriptionInput.value = '';
+
+        showNotification('❌ Edit cancelled');
+    }
+
+    // Cancel button click handler
+    if (cancelEditBtn) {
+        cancelEditBtn.addEventListener('click', cancelEdit);
+    }
+
     // Remove video
     function removeVideo(videoId) {
+        if (!confirm('Are you sure you want to remove this video?')) return;
+
         customVideos = customVideos.filter(v => v.id !== videoId);
         localStorage.setItem('customVideos', JSON.stringify(customVideos));
+
+        // If we were editing this video, cancel edit mode
+        if (editingVideoId === videoId) {
+            cancelEdit();
+        }
+
         renderVideoList();
         renderCustomVideos();
         showNotification('🗑️ Video removed');
@@ -1076,16 +1199,23 @@ document.addEventListener('DOMContentLoaded', () => {
         videoListContainer.innerHTML = customVideos.map(video => `
             <div class="video-item">
                 <div class="video-item-info">
-                    <strong>${video.category}</strong>
-                    <span>ID: ${video.id}</span>
+                    <strong>${video.name || video.category || 'Untitled'}</strong>
+                    <span>Category: ${video.category || '—'}</span>
+                    <span>Role: ${video.role || '—'}</span>
+                    <span style="font-size: 0.85rem; opacity: 0.7;">ID: ${video.id}</span>
                 </div>
-                <button onclick="window.removeVideoById('${video.id}')">Remove</button>
+                <div class="video-item-actions">
+                    <button onclick="window.editVideoById('${video.id}')" class="edit-btn">✏️ Edit</button>
+                    <button onclick="window.removeVideoById('${video.id}')" class="remove-btn">🗑️ Remove</button>
+                </div>
             </div>
         `).join('');
     }
 
-    // Make removeVideo globally accessible
+    // Make functions globally accessible
     window.removeVideoById = removeVideo;
+    window.editVideoById = editVideo;
+    window.cancelEdit = cancelEdit;
 
     // Render custom videos to the projects grid
     function renderCustomVideos() {
@@ -1102,10 +1232,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             card.innerHTML = `
                 <div class="project-image">
-                    <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.category}" loading="eager">
+                    <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.name || video.category}" loading="eager">
                     <div class="play-overlay">▶</div>
                 </div>
-                <h3>${video.category}</h3>
+                <h3>${video.name || video.category}</h3>
             `;
 
             // Add to grid at the TOP (insert as first child)
@@ -1144,6 +1274,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
                 createRipple(e, card);
                 setTimeout(() => {
+                    updateVideoInfo(videoId);
                     if (isMobile) {
                         modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
                     } else {
